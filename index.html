@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Digital clock</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="time">
+        <div id="hours">00</div>
+        <div class="divider">:</div>
+        <div id="minutes">00</div>
+        <div class="divider">:</div>
+        <div class="seconds-container">
+          <div id="seconds">00</div>
+          <div id="seconds2">00</div>
+        </div>
+      </div>
+      <img src="./img/1.png" id="secturner1" />
+      <img src="./img/42.png" id="secturner-paper" />
+      <img src="./img/52.png" id="secturner-paper2" />
+      <img src="./img/62.png" id="secturner-paper3" />
+      <!-- <img src="./img/2.png" id="secturner2" />
+      <img src="./img/3.png" id="secturner3" />
+      <img src="./img/4.png" id="secturner4" />
+      <img src="./img/5.png" id="secturner5" />
+      <img src="./img/6.png" id="secturner6" /> -->
+    </div>
+
+    <script>
+      let hours = document.getElementById("hours");
+      let minutes = document.getElementById("minutes");
+      let seconds = document.getElementById("seconds");
+      let seconds2 = document.getElementById("seconds2");
+      seconds.style.opacity = "1";
+      seconds2.style.opacity = "0";
+
+      let h;
+      let m;
+      let s;
+      let s2;
+
+      let images = new Array();
+      images = [
+        "./img/1.png",
+        "./img/2.png",
+        "./img/3.png",
+        "./img/4.png",
+        "./img/5.png",
+        "./img/6.png",
+        "./img/7.png",
+        "./img/8.png",
+      ];
+
+      setInterval(() => {
+        h = new Date().getHours();
+        m = new Date().getMinutes();
+        s = new Date().getSeconds();
+        s2 = new Date().getSeconds();
+
+        h = h < 10 ? "0" + h : h;
+        m = m < 10 ? "0" + m : m;
+        s = s < 10 ? "0" + s : s;
+        s2 = s2 < 10 ? "0" + s2 : s2;
+        s2 = s2 == 0 ? "0" + "0" : s2;
+
+        hours.innerHTML = h;
+        minutes.innerHTML = m;
+        seconds.innerHTML = s;
+        seconds2.innerHTML = s2;
+      });
+      setTimeout(function () {
+        setInterval("Animate()", 125);
+      }, 500);
+
+      var x = 0;
+
+      function Animate() {
+        document.getElementById("secturner-paper").style.opacity = "0";
+        document.getElementById("secturner-paper2").style.opacity = "0";
+        document.getElementById("secturner-paper3").style.opacity = "0";
+        document.getElementById("secturner1").src = images[x];
+
+        x++;
+        switch (x) {
+          case 4:
+            document.getElementById("secturner-paper").style.opacity = "1";
+
+            break;
+          case 5:
+            document.getElementById("secturner-paper2").style.opacity = "1";
+
+            break;
+          case 6:
+            document.getElementById("secturner-paper3").style.opacity = "1";
+            seconds.style.transform = "perspective(20rem) rotateX(60deg)";
+            seconds.style.marginBottom = "3rem";
+            break;
+          case 7:
+            seconds.style.transform = "perspective(30rem) rotateX(40deg)";
+            break;
+          case 8:
+            seconds.style.transform = "none";
+            seconds.style.marginBottom = "0";
+        }
+
+        if (images.length == x) {
+          x = 0;
+        }
+      }
+    </script>
+  </body>
+</html>

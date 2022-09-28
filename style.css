@@ -1,0 +1,88 @@
+@import url(https://fonts.googleapis.com/css?family=Amatic+SC:regular,700);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Amatic SC";
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #141013;
+  font-size: 9rem;
+  font-weight: 800;
+}
+
+#time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  color: #6e4d42;
+}
+
+.divider {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  width: 690px;
+  height: 700px;
+}
+
+.seconds-container {
+  position: relative;
+}
+
+#seconds {
+  animation: sec;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+/* @keyframes sec {
+  0% {
+  }
+
+  75% {
+    transform: perspective(20rem) rotateX(50deg) translateZ(0);
+  }
+
+  100% {
+  }
+} */
+
+#seconds2 {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+}
+
+#secturner1,
+#secturner-paper,
+#secturner-paper2,
+#secturner-paper3 {
+  position: absolute;
+  z-index: -1;
+  left: 360px;
+  bottom: 150px;
+  width: auto;
+  height: auto;
+  max-width: 500px;
+  opacity: 100%;
+  animation-name: turn;
+}
+
+#secturner-paper,
+#secturner-paper2,
+#secturner-paper3 {
+  z-index: 10;
+  opacity: 0;
+}
