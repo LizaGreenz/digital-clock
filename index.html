@@ -23,11 +23,7 @@
       <img src="./img/42.png" id="secturner-paper" />
       <img src="./img/52.png" id="secturner-paper2" />
       <img src="./img/62.png" id="secturner-paper3" />
-      <!-- <img src="./img/2.png" id="secturner2" />
-      <img src="./img/3.png" id="secturner3" />
-      <img src="./img/4.png" id="secturner4" />
-      <img src="./img/5.png" id="secturner5" />
-      <img src="./img/6.png" id="secturner6" /> -->
+      <img src="./img/eyes1.png" id="eyes1" />
     </div>
 
     <script>
@@ -43,8 +39,10 @@
       let s;
       let s2;
 
-      let images = new Array();
-      images = [
+      let y = 0;
+      let x = 0;
+
+      let images = [
         "./img/1.png",
         "./img/2.png",
         "./img/3.png",
@@ -55,7 +53,15 @@
         "./img/8.png",
       ];
 
-      setInterval(() => {
+      let eyes = [
+        "./img/eyes1.png",
+        "./img/eyes2.png",
+        "./img/eyes3.png",
+        "./img/eyes2.png",
+        "./img/eyes1.png",
+      ];
+
+      setInterval(function () {
         h = new Date().getHours();
         m = new Date().getMinutes();
         s = new Date().getSeconds();
@@ -72,13 +78,27 @@
         seconds.innerHTML = s;
         seconds2.innerHTML = s2;
       });
+
+      setInterval("animateEyes()", 100);
+      setInterval("animateEyesDelay()", 5000);
+
+      function animateEyesDelay() {
+        y = 0;
+      }
+
+      function animateEyes() {
+        if (y < eyes.length) {
+          document.getElementById("eyes1").src = eyes[y];
+          y++;
+          console.log(y);
+        }
+      }
+
       setTimeout(function () {
-        setInterval("Animate()", 125);
-      }, 500);
+        setInterval("animatePaper()", 125);
+      }, 600);
 
-      var x = 0;
-
-      function Animate() {
+      function animatePaper() {
         document.getElementById("secturner-paper").style.opacity = "0";
         document.getElementById("secturner-paper2").style.opacity = "0";
         document.getElementById("secturner-paper3").style.opacity = "0";

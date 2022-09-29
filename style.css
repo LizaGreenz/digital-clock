@@ -13,7 +13,7 @@ body {
   align-items: center;
   min-height: 100vh;
   background: #141013;
-  font-size: 9rem;
+  font-size: 8rem;
   font-weight: 800;
 }
 
@@ -26,8 +26,8 @@ body {
 }
 
 .divider {
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .container {
@@ -47,18 +47,6 @@ body {
   animation-iteration-count: infinite;
 }
 
-/* @keyframes sec {
-  0% {
-  }
-
-  75% {
-    transform: perspective(20rem) rotateX(50deg) translateZ(0);
-  }
-
-  100% {
-  }
-} */
-
 #seconds2 {
   position: absolute;
   top: 0;
@@ -68,14 +56,15 @@ body {
 #secturner1,
 #secturner-paper,
 #secturner-paper2,
-#secturner-paper3 {
+#secturner-paper3,
+#eyes1 {
   position: absolute;
   z-index: -1;
-  left: 360px;
-  bottom: 150px;
+  left: 430px;
+  bottom: 190px;
   width: auto;
   height: auto;
-  max-width: 500px;
+  max-width: 400px;
   opacity: 100%;
   animation-name: turn;
 }
