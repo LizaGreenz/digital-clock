@@ -71,8 +71,8 @@
         seconds.innerHTML = s;
       });
 
-      setInterval("animateEyes()", 100);
-      setInterval("animateEyesDelay()", 5000);
+      setInterval(animateEyes, 100);
+      setInterval(animateEyesDelay, 5000);
 
       function animateEyesDelay() {
         y = 0;
@@ -87,7 +87,7 @@
       }
 
       setTimeout(function () {
-        setInterval("animatePaper()", 125);
+        setInterval(animatePaper, 125);
       }, 500);
 
       function animatePaper() {
