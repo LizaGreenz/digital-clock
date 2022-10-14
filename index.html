@@ -25,102 +25,123 @@
       <img src="./img/eyes1.png" id="eyes1" />
     </div>
     <script>
-      let hours = document.getElementById("hours");
-      let minutes = document.getElementById("minutes");
-      let seconds = document.getElementById("seconds");
-      let seconds2 = document.getElementById("seconds2");
-
-      let h;
-      let m;
-      let s;
-      let s2;
-
-      let y = 0;
-      let x = 0;
-
-      let images = [
-        "./img/1.png",
-        "./img/2.png",
-        "./img/3.png",
-        "./img/4.png",
-        "./img/5.png",
-        "./img/6.png",
-        "./img/7.png",
-        "./img/8.png",
-      ];
-
-      let eyes = [
-        "./img/eyes1.png",
-        "./img/eyes2.png",
-        "./img/eyes3.png",
-        "./img/eyes2.png",
-        "./img/eyes1.png",
-      ];
-
-      setInterval(function () {
-        h = new Date().getHours();
-        m = new Date().getMinutes();
-        s = new Date().getSeconds();
-
-        h = h < 10 ? "0" + h : h;
-        m = m < 10 ? "0" + m : m;
-        s = s < 10 ? "0" + s : s;
-
-        hours.innerHTML = h;
-        minutes.innerHTML = m;
-        seconds.innerHTML = s;
+      window.addEventListener("DOMContentLoaded", (event) => {
+        console.log("DOM fully loaded and parsed");
+        init();
       });
+      function init() {
+        let hours = document.getElementById("hours");
+        let minutes = document.getElementById("minutes");
+        let seconds = document.getElementById("seconds");
+        let seconds2 = document.getElementById("seconds2");
 
-      setInterval(animateEyes, 100);
-      setInterval(animateEyesDelay, 5000);
+        let h;
+        let m;
+        let s;
 
-      function animateEyesDelay() {
-        y = 0;
-      }
+        let y = 0;
+        let x = 0;
 
-      function animateEyes() {
-        if (y < eyes.length) {
-          document.getElementById("eyes1").src = eyes[y];
-          y++;
-          console.log(y);
+        let images = [
+          "./img/1.png",
+          "./img/2.png",
+          "./img/3.png",
+          "./img/4.png",
+          "./img/5.png",
+          "./img/6.png",
+          "./img/7.png",
+          "./img/8.png",
+        ];
+
+        let eyes = [
+          "./img/eyes1.png",
+          "./img/eyes2.png",
+          "./img/eyes3.png",
+          "./img/eyes2.png",
+          "./img/eyes1.png",
+        ];
+
+        var observer = new MutationObserver(callback);
+
+        observer.observe(seconds, {
+          childList: true,
+        });
+
+        function callback(mutationList, observer) {
+          for (const mutation of mutationList) {
+            if (mutation.type === "childList") {
+              console.log("A child node has been added or removed.");
+              setTimeout(function () {
+                setInterval(animatePaper, 125);
+              }, 475);
+              observer.disconnect();
+            }
+          }
         }
-      }
 
-      setTimeout(function () {
-        setInterval(animatePaper, 125);
-      }, 500);
+        getTime();
 
-      function animatePaper() {
-        document.getElementById("secturner-paper").style.opacity = "0";
-        document.getElementById("secturner-paper2").style.opacity = "0";
-        document.getElementById("secturner-paper3").style.opacity = "0";
-        document.getElementById("secturner1").src = images[x];
+        function getTime() {
+          setInterval(function () {
+            h = new Date().getHours();
+            m = new Date().getMinutes();
+            s = new Date().getSeconds();
 
-        x++;
-        switch (x) {
-          case 4:
-            document.getElementById("secturner-paper").style.opacity = "1";
-
-            break;
-          case 5:
-            document.getElementById("secturner-paper2").style.opacity = "1";
-
-            break;
-          case 6:
-            document.getElementById("secturner-paper3").style.opacity = "1";
-            seconds.style.transform = "perspective(20rem) rotateX(60deg)";
-            seconds.style.marginBottom = "3rem";
-            break;
-          case 7:
-            seconds.style.transform = "perspective(30rem) rotateX(40deg)";
-            break;
-          case 8:
-            seconds.style.transform = "none";
-            seconds.style.marginBottom = "0";
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+            s = s < 10 ? "0" + s : s;
+            hours.innerHTML = h;
+            minutes.innerHTML = m;
+            seconds.innerHTML = s;
+          });
         }
 
-        if (images.length == x) {
-          x = 0;
+        setInterval(animateEyes, 100);
+        setInterval(animateEyesDelay, 5000);
+
+        function animateEyesDelay() {
+          y = 0;
+        }
+
+        function animateEyes() {
+          if (y < eyes.length) {
+            document.getElementById("eyes1").src = eyes[y];
+            y++;
+          }
+        }
+
+        function animatePaper() {
+          document.getElementById("secturner-paper").style.opacity = "0";
+          document.getElementById("secturner-paper2").style.opacity = "0";
+          document.getElementById("secturner-paper3").style.opacity = "0";
+          document.getElementById("secturner1").src = images[x];
+
+          x++;
+          switch (x) {
+            case 4:
+              document.getElementById("secturner-paper").style.opacity = "1";
+
+              break;
+            case 5:
+              document.getElementById("secturner-paper2").style.opacity = "1";
+
+              break;
+            case 6:
+              document.getElementById("secturner-paper3").style.opacity = "1";
+              seconds.style.transform = "perspective(20rem) rotateX(60deg)";
+              seconds.style.marginBottom = "3rem";
+              break;
+            case 7:
+              seconds.style.transform = "perspective(30rem) rotateX(40deg)";
+              break;
+            case 8:
+              seconds.style.transform = "none";
+              seconds.style.marginBottom = "0";
+          }
+
+          if (images.length == x) {
+            x = 0;
+          }
         }
       }
     </script>
